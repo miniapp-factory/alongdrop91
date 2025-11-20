@@ -68,7 +68,7 @@ export default function Quiz() {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
 
-  const shuffle = (arr: any[]) => {
+  const shuffle = (arr: { text: string; animal: string }[]) => {
     const copy = [...arr];
     for (let i = copy.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -79,7 +79,7 @@ export default function Quiz() {
 
   const shuffledOptions = useMemo(
     () => shuffle(questions[current].options),
-    [current]
+    [current, questions]
   );
 
   const handleSelect = (animal: string) => {
